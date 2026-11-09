@@ -154,16 +154,69 @@ h1 span { color: var(--orange); }
   .contact-info, .contact-form-card { padding: 21px; }
 }
 
-/* Mobile View (≤ 768px): Compact top bar, stacked hero, strict 1-column cards (matching Figure 2) */
+/* Mobile View (≤ 768px): Responsive mobile header with accessible navigation, stacked hero, strict 1-column cards */
 @media (max-width: 768px) {
   .container { width: calc(100% - 32px); }
 
-  /* Navigation Bar: Desktop navigation links collapse or hide */
-  .nav-wrap { min-height: 64px; display: flex; justify-content: space-between; align-items: center; gap: 16px; }
-  .main-nav { display: none; } /* Desktop links hidden on mobile per Figure 2 */
-  .brand { font-size: 19px; }
-  .brand img { width: 32px; height: 32px; }
-  .sign-in { min-height: 34px; padding: 6px 14px; font-size: 12px; }
+  /* Navigation Bar: 2-row layout on mobile keeping brand, sign in, and page navigation accessible */
+  .nav-wrap {
+    min-height: auto;
+    padding: 12px 0 8px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    align-items: center;
+    gap: 10px 16px;
+  }
+  .brand {
+    font-size: 19px;
+  }
+  .brand img {
+    width: 32px;
+    height: 32px;
+  }
+  .sign-in {
+    grid-column: 2;
+    grid-row: 1;
+    min-height: 34px;
+    padding: 6px 14px;
+    font-size: 12px;
+  }
+  .main-nav {
+    grid-column: 1 / -1;
+    grid-row: 2;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    gap: 8px;
+    height: 38px;
+    margin-top: 2px;
+    border-top: 1px solid #edf3f8;
+  }
+  .main-nav a {
+    flex: 1;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    padding: 4px 8px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    text-align: center;
+    border-radius: 6px;
+    transition: color 0.2s ease, background 0.2s ease;
+  }
+  .main-nav a:hover {
+    color: var(--orange);
+    background: rgba(254, 120, 30, 0.05);
+  }
+  .main-nav a.active {
+    color: var(--orange);
+  }
+  .main-nav a.active::after {
+    bottom: 0;
+    height: 3px;
+  }
 
   /* Hero Banner: Stacks into clean vertical stream, proportional scaling without horizontal overflow */
   .hero-inner { display: flex; flex-direction: column; align-items: stretch; gap: 18px; min-height: auto; }
